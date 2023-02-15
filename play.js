@@ -26,8 +26,31 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "ScISSors"
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
+    let roundResult;
+    let returnString;
+    let playerSelection;
+    for(let i = 0; i < 5; i++) {
+        playerSelection = prompt("Rock, Paper, or Scissors?");
+        roundResult = playRound(playerSelection, getComputerChoice());
+        console.log(roundResult);
+        if(roundResult.substring(0,5) === "You w") {
+            playerScore++;
+        } else if(roundResult.substring(0,5) === "You l") {
+            computerScore++;
+        }
+    }
+    returnString = "Player: " + playerScore + " - Computer: " + computerScore;
+    if(playerScore > computerScore) {
+        returnString = returnString + "\nPlayer Wins!";
+    } else if(computerScore > playerScore) {
+        returnString = returnString + "\nComputer Wins!";
+    } else {
+        returnString = returnString + "\nIt's a Tie!";
+    }
+    return returnString;
+}
 
-const computerSelection = getComputerChoice();
-
-console.log(playRound(playerSelection, computerSelection));
+console.log(game());
